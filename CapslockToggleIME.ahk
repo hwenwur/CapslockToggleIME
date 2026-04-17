@@ -44,6 +44,12 @@ SetIMEConversionMode(hwnd, mode) {
 
 ToggleIME() {
     hwnd := WinGetID("A")
+    try {
+        focused := ControlGetFocus("A")
+        ctrlHwnd := ControlGetHwnd(focused, "A")
+        if (ctrlHwnd)
+            hwnd := ctrlHwnd
+    }
     mode := GetIMEConversionMode(hwnd)
 
     if (mode = 0) {
